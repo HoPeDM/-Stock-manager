@@ -1,6 +1,6 @@
 # Gerenciador de Estoque
 
-Aplicação simples em Spring Boot para gerenciar produtos (trabalho de faculdade).
+Aplicação simples em Spring Boot para gerenciar produtos 
 
 ## Como rodar
 
