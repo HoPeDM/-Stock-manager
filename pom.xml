@@ -11,8 +11,8 @@
 	<groupId>com.estoque</groupId>
 	<artifactId>gerenciador</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name/>
-	<description/>
+	<name>stock-manager</name>
+	<description>Aplicacao simples para gerenciamento de produtos em estoque.</description>
 	<url/>
 	<licenses>
 		<license/>
@@ -46,8 +46,8 @@
 		</dependency>
 		<dependency>
 			<groupId>org.postgresql</groupId>
-    		<artifactId>postgresql</artifactId>
-    		<scope>runtime</scope>
+			<artifactId>postgresql</artifactId>
+			<scope>runtime</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>

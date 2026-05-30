@@ -1,34 +1,101 @@
-# Gerenciador de Estoque
+# Stock Manager
 
-Aplicação simples em Spring Boot para gerenciar produtos 
+Aplicacao simples de controle de estoque feita com Spring Boot, JPA e PostgreSQL.
 
-## Como rodar
+O projeto possui uma API REST para cadastrar, listar, atualizar e remover produtos. Tambem inclui uma pagina web simples em `src/main/resources/static/index.html`.
 
-Pré-requisitos: Java 11+, Maven, e um banco PostgreSQL disponível.
+## Tecnologias
 
-1. Configure as variáveis de ambiente (opcional) ou edite `src/main/resources/application.properties`:
-
-```
-DB_USERNAME=postgres
-DB_PASSWORD=suasenha
-```
-
-2. Rodar com Maven:
-
-```bash
-mvn spring-boot:run
-```
-
-## Observações de segurança
-
-- O repositório contém apenas código fonte e arquivos de configuração de exemplo. Não comite senhas ou tokens.
-- Use variáveis de ambiente ou um gerenciador de segredos para valores sensíveis (ex.: `DB_PASSWORD`).
+- Java 21
+- Spring Boot
+- Spring Data JPA
+- PostgreSQL
+- Maven
 
 ## Estrutura
 
-- `src/main/java` — código fonte
-- `src/main/resources` — configurações e recursos estáticos
+```text
+src/main/java/com/estoque
+|-- GerenciadorApplication.java
+|-- controller/ProductController.java
+|-- model/Product.java
+`-- repository/ProductRepository.java
 
-## Licença
+src/main/resources
+|-- application.properties
+`-- static/index.html
+```
 
-Uso pessoal / educacional.
+## Banco de dados
+
+Por padrao, a aplicacao tenta conectar em:
+
+```text
+jdbc:postgresql://localhost:5432/meubanco
+```
+
+Crie o banco no PostgreSQL:
+
+```sql
+CREATE DATABASE meubanco;
+```
+
+Configure usuario e senha por variaveis de ambiente:
+
+```powershell
+$env:DB_USERNAME="postgres"
+$env:DB_PASSWORD="sua_senha"
+```
+
+## Como rodar
+
+No Windows:
+
+```powershell
+.\mvnw.cmd spring-boot:run
+```
+
+Em Linux/macOS:
+
+```bash
+./mvnw spring-boot:run
+```
+
+Depois acesse:
+
+```text
+http://localhost:8080
+```
+
+## Testes
+
+Os testes usam H2 em memoria, entao nao precisam do PostgreSQL local:
+
+```powershell
+.\mvnw.cmd test
+```
+
+## Rotas da API
+
+| Metodo | Rota | Descricao |
+| --- | --- | --- |
+| `GET` | `/api/produtos` | Lista todos os produtos |
+| `POST` | `/api/produtos` | Cadastra um produto |
+| `PUT` | `/api/produtos/{id}` | Atualiza um produto |
+| `DELETE` | `/api/produtos/{id}` | Remove um produto |
+
+Exemplo de JSON para cadastro:
+
+```json
+{
+  "nome": "Monitor",
+  "quantidade": 10,
+  "preco": 799.9
+}
+```
+
+## Observacoes
+
+- A tabela `produtos` e criada/atualizada automaticamente pelo Hibernate.
+- Nao salve senhas diretamente no codigo.
+- Use as variaveis `DB_USERNAME` e `DB_PASSWORD` para credenciais locais.
